@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camila</title>
+    <!-- Agregar fuente de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        margin: 0;   
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000000;
+        overflow: hidden; /* Para ocultar las imágenes fuera de la pantalla */
+    }
+
+    .hearth {
+        height: 150px;
+        width: 150px;
+        background-color: red;
+        position: relative;
+        transform: rotate(45deg);
+        box-shadow: -20px 20px 150px #f20404;
+        animation: palpitar 0.5s linear infinite alternate;
+    }
+    .contenido {
+        position: fixed;
+        margin-bottom: 50px;
+        text-align: center;
+        animation: palpitarTexto 0.5s linear infinite alternate;
+        font-family: 'Dancing Script', cursive; /* Fuente más bonita */
+    }
+
+    h1 {
+        color: rgb(230, 223, 223);
+    }
+    h2 {
+        color: rgb(230, 223, 223);
+    }
+
+    @keyframes palpitar {
+        0%{transform: rotate(45deg) scale(1.10);}
+        80%{transform: rotate(45deg) scale(1.0);}
+        100%{transform: rotate(45deg) scale(0.8);}
+    }
+
+    @keyframes palpitarTexto {
+        0% {transform: scale(1.1);}
+        80% {transform: scale(1);}
+        100% {transform: scale(0.9);}
+    }
+
+    .hearth::before {
+        content: "";
+        position: absolute;
+        height: 150px;
+        width: 150px;
+        background-color: red;
+        right: 50%;
+        border-radius: 50%;
+        box-shadow: 20px 20px 150px #630404;
+    }
+
+    .hearth::after {
+        content: "";
+        position: absolute;
+        height: 150px;
+        width: 150px;
+        background-color: red;
+        top: -50%;
+        border-radius: 50%;
+        box-shadow: 20px 20px 150px #f20404;
+    }
+
+    /* Animación de los corazones y las imágenes flotantes */
+    @keyframes flotar {
+        0% {
+            opacity: 0;
+            transform: translateY(50px) scale(0.5);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(-500px) scale(1.5);
+        }
+    }
+
+    /* Estilo para los corazones flotantes */
+    .corazon {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        transform: rotate(45deg);
+        animation: flotar 4s ease-in infinite;
+    }
+
+    /* Estilo del corazón usando before y after */
+    .corazon::before,
+    .corazon::after {
+        content: "";
+        position: absolute;
+        background-color: red;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+    }
+
+    .corazon::before {
+        left: 0;
+        top: -15px;
+    }
+
+    .corazon::after {
+        top: 0;
+        left: 15px;
+    }
+
+    /* Estilo para las imágenes flotantes */
+    .imagen-flotante {
+        position: absolute;
+        width: 100px; /* Ajusta el tamaño de la imagen */
+        height: 100px; /* Ajusta el tamaño de la imagen */
+        animation: flotar 4s ease-in infinite;
+    }
+</style>
+<body>
+    <div class="hearth"></div>
+    <div class="contenido">
+        <h1> te amo </h1>
+        <h2>Mi Bonita :) </h2>
+    </div>
+
+    <script>
+        // Lista de URLs de las imágenes subidas (reemplaza con tus URLs)
+        const imagenes = [
+            "https://i.imgur.com/2tezHzQ.jpeg", // Reemplaza estas URLs con las imágenes de ustedes
+            "https://i.imgur.com/5lFtzW4.jpeg",
+            "https://i.imgur.com/84LAdw7.jpeg",
+            "https://i.imgur.com/efYt0eA.jpeg",
+            "https://i.imgur.com/17JQkrY.jpeg",
+            "https://i.imgur.com/3kP5TFd.jpeg",
+            "https://i.imgur.com/xNEtXXP.jpeg",
+            "https://i.imgur.com/bZXV2K4.jpeg",
+            "https://i.imgur.com/3ZSLxER.jpeg",
+            "https://i.imgur.com/DvUFqPu.jpeg",
+            "https://i.imgur.com/6fzwjTp.jpeg",
+            "https://i.imgur.com/bn0IeQQ.jpeg",
+            "https://i.imgur.com/5GAlTdm.png",
+            "https://i.imgur.com/Ta5OhhI.jpeg",
+            "https://i.imgur.com/1MdJl5w.png",
+            "https://i.imgur.com/WTF1VE9.jpeg",
+            "https://i.imgur.com/48SG78b.jpeg",
+            "https://i.imgur.com/BLTpS7C.jpeg",
+            "https://i.imgur.com/rvIazTw.jpeg"
+        ];
+
+        // Función para crear corazones flotantes
+        function crearCorazon() {
+            const corazon = document.createElement("div");
+            corazon.classList.add("corazon");
+
+            // Establecer una posición aleatoria para el corazón
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+
+            corazon.style.left = `${x}px`;
+            corazon.style.top = `${y}px`;
+
+            // Añadir el corazón al cuerpo
+            document.body.appendChild(corazon);
+
+            // Eliminar el corazón después de la animación
+            setTimeout(() => {
+                corazon.remove();
+            }, 4000); // Duración de la animación
+        }
+
+        // Función para crear imágenes flotantes (de ustedes)
+        function crearImagen() {
+            const imagen = document.createElement("img");
+            imagen.classList.add("imagen-flotante");
+
+            // Establecer una posición aleatoria para la imagen
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+
+            // Elegir una imagen aleatoria del arreglo
+            const imagenAleatoria = imagenes[Math.floor(Math.random() * imagenes.length)];
+            imagen.src = imagenAleatoria;
+            imagen.style.left = `${x}px`;
+            imagen.style.top = `${y}px`;
+
+            // Añadir la imagen al cuerpo
+            document.body.appendChild(imagen);
+
+            // Eliminar la imagen después de la animación
+            setTimeout(() => {
+                imagen.remove();
+            }, 4000); // Duración de la animación
+        }
+
+        // Generar corazones e imágenes cada 0.5 segundos
+        setInterval(crearCorazon, 500);
+        setInterval(crearImagen, 1000); // Las imágenes aparecerán con un intervalo diferente
+    </script>
+</body>
+</html>
